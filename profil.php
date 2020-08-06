@@ -46,6 +46,10 @@ include("./inc/head.inc.php");
     <h1 style="margin-top:25px;">News<span class="vert">.</span></h1>
     <label for="news-title">Intitulé de la news</label><input id="news-title" name="news-title" type="text" placeholder="Titre"><br>
     <label for="description-news">Description</label><br><textarea id="description-news" name="description" rows="2"></textarea>
+    <hr>
+    <h1 style="margin-top:25px;">Mes badges<span class="vert">.</span></h1>
+    <label for="news-title">Badges</label><!-- BADGES ICI BB JTM-->
+
   </form>
 
   </div>
