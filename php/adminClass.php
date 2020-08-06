@@ -21,25 +21,25 @@ class AdminManager{
 
       /*CAT*/
       if (empty($_POST['addCat'])){
+        echo "test";
         $errors['addCat'] = "Veuillez remplir le champ de l'ajout.";
       }
 
       elseif ($req['idk'] >= 1) {
+        echo $req['idk'];
         $errors['addCat'] = 'Cette catégorie existe déjà';
       }
 
       /*-------------------------*/
       if (empty($errors)) {
-        if (!empty($addcat)) {
           $req = $bdd->prepare("INSERT INTO col_categorie (categorie) VALUES(?)");
           $req->execute(array($_POST['addCat']));
           DBLink::disconnect($bdd);
-          // header('Location:./admin.php');
+          header('Location:./admin.php');
         }
-      }
       else {
         $_SESSION["ERROR"] = $errors;
-        // header('Location:./addcat.php');
+        header('Location:./addcat.php');
       }
       exit();
     }
