@@ -1,0 +1,11 @@
+Admin
+Login : ghijloi
+MDP : 00000
+
+Porteur de projet
+Login : Beaupere
+MDP : Virer
+
+Membre
+Login : Meleadr
+MDP : Pom2ter
