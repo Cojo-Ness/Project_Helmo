@@ -48,7 +48,12 @@ include("./inc/head.inc.php");
     <label for="description-news">Description</label><br><textarea id="description-news" name="description" rows="2"></textarea>
     <hr>
     <h1 style="margin-top:25px;">Mes badges<span class="vert">.</span></h1>
-    <label for="news-title">Badges</label><!-- BADGES ICI BB JTM-->
+    <label for="news-title"><?php
+      foreach($_SESSION['badge'] as $badge) {
+        echo $badge['nom'];
+      }
+      ?>
+    </label><!-- BADGES ICI BB JTM-->
 
   </form>
 

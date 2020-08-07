@@ -226,6 +226,7 @@ class UserManage{
             $_SESSION['est_desactive'] = $userinfo['est_desactive'];
             $_SESSION['est_admin'] = $userinfo['est_admin'];
             $_SESSION['loggedIn'] = true;
+            retreiveBadges();
             DBLink::disconnect($bdd);
             header("Location:./profil.php");
           }
@@ -469,16 +470,35 @@ class UserManage{
     header("Location:../index.php");
   }
 
+  function retreiveCommentsCount() {
+    $comment_count = $comment_count->prepare("SELECT COUNT(id_membre) as com_count from col_commentaire WHERE id_membre = ?");
+    $comment_count->execute(array($_SESSION['id_membre']));
+    return $req['com_count'];
+  }
+
+  function retreiveProjetsCount() {
+    $projet_count = $projet_count->prepare("SELECT COUNT(id_membre) as project_count from col_projet WHERE id_membre = ?");
+    $projet_count->execute(array($_SESSION['id_membre']));
+    return $req['project_count'];
+  }
 
 
-
-
-
-
-
-
-
-
-
-
+  function retreiveBadges() {
+    $badges = array();
+    $comment_count = retreiveCommentsCount();
+    $project_count = retreiveProjetsCount();
+    if($comment_count >= 3) {
+      $badge_info = $badge_info->prepare("SELECT * from col_badge WHERE nom = 'Trois commentaires'");
+      array_push($badges, $project_count->fetch());
+    }
+    elseif($comment_count >= 10) {
+      $badge_info = $badge_info->prepare("SELECT * from col_badge WHERE nom = 'Dix commentaires'");
+      array_push($badges, $project_count->fetch());
+    }
+    elseif($project_count >= 3) {
+      $badge_info = $badge_info->prepare("SELECT * from col_badge WHERE nom = 'Trois commentaires'");
+      array_push($badges, $project_count->fetch());
+    }
+    $_SESSION['badge'] = $badges;
+  }
 }
