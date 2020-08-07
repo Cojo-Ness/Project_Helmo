@@ -4,8 +4,3 @@ CREATE TABLE col_badge (
     description text NOT NULL,
     image varchar(255) NOT NULL
 );
-
-CREATE TABLE col_badge_association (
-	id_membre INT REFERENCES col_membre(id_membre),
-    id_badge INT REFERENCES col_badge(id_badge)
-);
